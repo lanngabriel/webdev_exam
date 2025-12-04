@@ -2,6 +2,7 @@
 session_start();
 
 $name = $_SESSION['name'] ?? null;
+$profile = $_SESSION['profile'] ?? null;
 $alerts = $_SESSION['alerts'] ?? [];
 $active_form = $_SESSION['active_form'] ?? '';
 
@@ -44,7 +45,10 @@ if ($name !== null) $_SESSION['name'] = $name;
 	<section>
 		<?php if (!empty($name)) : ?>
 			<div class="center-profile-box">
-			<div class="center-avatar"><?= strtoupper($name[0]) ?></div>
+			<div class="center-avatar">
+				<img src="<?=$profile?>"  />
+		
+			</div>
 			<div class="center-username"> <h2><?= $name ?></h2></div>
 			</div>
 		<?php endif; ?>

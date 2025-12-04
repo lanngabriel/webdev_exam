@@ -77,11 +77,13 @@ if (isset($_POST['login_btn'])) {
 
     $user = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['password'])) {
+    if ($user && $password === $user['password']) {
         $_SESSION['name'] = $user['name'];
+        $_SESSION['profile'] = $targetFilePath;
         $_SESSION['alerts'][] = ['type' => 'success', 'message' => 'Login successful'];
     } else {
         $_SESSION['alerts'][] = ['type' => 'error', 'message' => 'Incorrect email or password!'];
+        $_SESSION['profile'] = null;
         $_SESSION['active_form'] = 'login';
     }
 

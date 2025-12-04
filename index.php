@@ -46,7 +46,7 @@ if ($name !== null) $_SESSION['name'] = $name;
 		<?php if (!empty($name)) : ?>
 			<div class="center-profile-box">
 			<div class="center-avatar">
-				<img src="<?=$profile?>"  />
+				<img src="<?=$profile ?>" style="width: auto; height: 300px;"  >
 		
 			</div>
 			<div class="center-username"> <h2><?= $name ?></h2></div>

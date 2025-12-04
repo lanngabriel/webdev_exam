@@ -72,6 +72,12 @@ if (isset($_POST['login_btn'])) {
         $conn,
         "SELECT * FROM REGISTER WHERE email = '$email'"
     );
+    $profileQuery = sqlsrv_query(
+        $conn,
+        "SELECT * FROM IMAGE WHERE email = '$email'"
+    );
+    $profile = sqlsrv_fetch_array($profileQuery);
+
 
     if (!$query) die(print_r(sqlsrv_errors(), true));
 
@@ -79,7 +85,7 @@ if (isset($_POST['login_btn'])) {
 
     if ($user && $password === $user['password']) {
         $_SESSION['name'] = $user['name'];
-        $_SESSION['profile'] = $targetFilePath;
+        $_SESSION['profile'] = $profile['path'];
         $_SESSION['alerts'][] = ['type' => 'success', 'message' => 'Login successful'];
     } else {
         $_SESSION['alerts'][] = ['type' => 'error', 'message' => 'Incorrect email or password!'];
